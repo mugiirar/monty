@@ -5,7 +5,7 @@ int stack_arr[15];
 int top = -1;
 
 void process(unsigned int count, char *line);
-void push(int data, unsigned int count);
+void push(int data);
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -51,14 +51,19 @@ void process(unsigned int count, char *line)
         int k;
         int z;
         
-        count = count + 1;
+    
 
         command = strtok(line, " \n\t");
         if (command != NULL && strcmp(command, "push") == 0)
         {
                 arg = strtok(NULL, " \n\t");
+		if (arg == NULL || arg[0] < 48 || arg[0] > 57)
+		{
+			printf("L%u: usage: push integer\n", count);
+			exit(EXIT_FAILURE);
+		}	
                 k = atoi(arg);
-                push (k, count);
+                push (k);
         }
         if (command != NULL && strcmp(command, "pall") == 0)
         {
@@ -73,9 +78,8 @@ void process(unsigned int count, char *line)
 
 }
 
-void push(int data, unsigned int count)
+void push(int data)
 {
         top++;
         stack_arr[top] = data;
-        count++;
 }
