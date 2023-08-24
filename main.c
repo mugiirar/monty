@@ -16,6 +16,7 @@ void divi(unsigned int count);
 void mul(unsigned int count);
 void mod(unsigned int count);
 void pchar(unsigned int count);
+void pstr();
 
 int main(int argc, char *argv[])
 {
@@ -127,6 +128,10 @@ void process(unsigned int count, char *line)
 	{
 		pchar(count);
 	}
+	if (command != NULL && strcmp(command, "pstr") == 0)
+        {
+                pstr();
+        }
 	
 
 }
@@ -318,4 +323,37 @@ void pchar(unsigned int count)
 	exit(EXIT_FAILURE);
 }
 
+void pstr()
+{
+	int v;
+	char c;
+	int k;
+
+	v = top;
+
+	if (top == -1)
+	{
+		printf("\n");
+		return;
+	}
+	while(v > -1)
+	{
+		k = stack_arr[v];
+		if (k == 0)
+		{
+			break;
+		}
+		if ((97 <= k && k <= 122) || (65 <= k && k <= 90))
+		{
+			c = (char)k;
+			printf("%c", c);
+		}
+		if(!( (97 <= k && k <= 122) || (65 <= k && k <= 90) ))
+		{
+			break;
+		}
+		v = v - 1;
+	}
+	printf("\n");
+}
 
