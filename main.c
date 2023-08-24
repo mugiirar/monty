@@ -63,8 +63,7 @@ void process(unsigned int count, char *line)
     
 
         command = strtok(line, " \n\t");
-	if (command[0] != '#')
-	{
+
         if (command != NULL && strcmp(command, "push") == 0)
         {
                 arg = strtok(NULL, " \n\t");
@@ -122,7 +121,7 @@ void process(unsigned int count, char *line)
         {
                 mod(count);
         }
-	}
+	
 
 }
 
