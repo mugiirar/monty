@@ -132,14 +132,6 @@ void process(unsigned int count, char *line)
         {
                 pstr();
         }
-	else
-	{
-		if (command != NULL)
-		{
-			printf("L%u: unknown instruction %s", count, command);
-			exit (EXIT_FAILURE);
-		}
-	}
 	
 	
 
