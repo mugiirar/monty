@@ -11,6 +11,7 @@ void pop(unsigned int count);
 void swap(unsigned int count);
 void add(unsigned int count);
 void nop();
+void sub(unsigned int count);
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -96,9 +97,13 @@ void process(unsigned int count, char *line)
 	{
 		add(count);
 	}
-	if (command != NULL && strcmp(command, "nop"0 == 0))
+	if (command != NULL && strcmp(command, "nop") == 0)
 	{
 		nop();
+	}
+	if (command != NULL && strcmp(command, "sub") == 0)
+	{
+		sub(count);
 	}
 
 }
@@ -174,4 +179,23 @@ void add(unsigned int count)
 
 void nop()
 {
+}
+
+void sub(unsigned int count)
+{
+	int first, second, r;
+
+	r = top;
+	if (top < 1)
+	{
+		printf("L%u: can't sub, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+
+	first = stack_arr[r];
+	second = stack_arr[r - 1];
+
+	top = top - 1;
+
+	stack_arr[top] = second - first;
 }
