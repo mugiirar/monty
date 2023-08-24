@@ -15,6 +15,8 @@ void sub(unsigned int count);
 void divi(unsigned int count);
 void mul(unsigned int count);
 void mod(unsigned int count);
+void pchar(unsigned int count);
+
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -121,6 +123,10 @@ void process(unsigned int count, char *line)
         {
                 mod(count);
         }
+	if (command != NULL && strcmp(command, "pchar") == 0)
+	{
+		pchar(count);
+	}
 	
 
 }
@@ -288,3 +294,28 @@ void mod(unsigned int count)
 
         stack_arr[top] = second % first;
 }
+
+void pchar(unsigned int count)
+{
+	int k;
+	char c;
+
+	k = stack_arr[top];
+
+	if (top == -1)
+	{
+		printf("L%u: can't pchar, stack empty\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((97 <= k && k <= 122) || (65 <= k && k <= 90))
+	{
+		c = (char)k;
+		printf("%c\n", c);
+		return;
+	}
+	
+	printf("L%u: can't pchar, value out of range\n", count);
+	exit(EXIT_FAILURE);
+}
+
+
