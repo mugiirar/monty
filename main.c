@@ -6,6 +6,7 @@ int top = -1;
 
 void process(unsigned int count, char *line);
 void push(int data);
+void pint(unsigned int count);
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -75,6 +76,10 @@ void process(unsigned int count, char *line)
                         z = z -1;
                 }
         }
+	if (command != NULL && strcmp(command, "pint") == 0)
+	{
+		pint(count);
+	}
 
 }
 
@@ -82,4 +87,15 @@ void push(int data)
 {
         top++;
         stack_arr[top] = data;
+}
+
+void pint(unsigned int count)
+{
+	if (top == -1)
+	{
+		printf("L%u: can't pint, stack empty\n", count);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d", stack_arr[top]);
+	printf("\n");
 }
