@@ -65,7 +65,7 @@ void process(unsigned int count, char *line)
                 k = atoi(arg);
                 push (k);
         }
-        if (command != NULL && strcmp(command, "pall") == 0)
+        if (command != NULL && strcmp(command, "pall") == 0 && top !=-1)
         {
                 z = top;
                 while (z > -1)
