@@ -7,6 +7,7 @@ int top = -1;
 void process(unsigned int count, char *line);
 void push(int data);
 void pint(unsigned int count);
+void pop(unsigned int count);
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -80,6 +81,10 @@ void process(unsigned int count, char *line)
 	{
 		pint(count);
 	}
+	if (command != NULL && strcmp(command, "pop") == 0)
+	{
+		pop(count);
+	}
 
 }
 
@@ -99,3 +104,19 @@ void pint(unsigned int count)
 	printf("%d", stack_arr[top]);
 	printf("\n");
 }
+
+void pop(unsigned int count)
+{
+	int m, sec;
+
+	m = top;
+	if (top == -1)
+	{
+		printf("L%u: can't pop an empty stack\n", count);
+		exit(EXIT_FAILURE);
+	}
+	sec = stack_arr[m -1];
+	top = top - 1;
+	stack_arr[top] = sec;
+}
+
