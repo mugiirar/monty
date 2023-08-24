@@ -78,7 +78,7 @@ void process(unsigned int count, char *line)
                 k = atoi(arg);
                 push (k);
         }
-        if (command != NULL && strcmp(command, "pall") == 0 && top !=-1)
+	else if (command != NULL && strcmp(command, "pall") == 0 && top !=-1)
         {
                 z = top;
                 while (z > -1)
@@ -88,50 +88,59 @@ void process(unsigned int count, char *line)
                         z = z -1;
                 }
         }
-	if (command != NULL && strcmp(command, "pint") == 0)
+	else if (command != NULL && strcmp(command, "pint") == 0)
 	{
 		pint(count);
 	}
-	if (command != NULL && strcmp(command, "pop") == 0)
+	else if (command != NULL && strcmp(command, "pop") == 0)
 	{
 		pop(count);
 	}
-	if (command != NULL && strcmp(command, "swap") == 0)
+	else if (command != NULL && strcmp(command, "swap") == 0)
 	{
 		swap(count);
 	}
-	if (command != NULL && strcmp(command, "add") == 0)
+	else if (command != NULL && strcmp(command, "add") == 0)
 	{
 		add(count);
 	}
-	if (command != NULL && strcmp(command, "nop") == 0)
+	else if (command != NULL && strcmp(command, "nop") == 0)
 	{
 		nop();
 	}
-	if (command != NULL && strcmp(command, "sub") == 0)
+	else if (command != NULL && strcmp(command, "sub") == 0)
 	{
 		sub(count);
 	}
-	if (command != NULL && strcmp(command, "div") == 0)
+	else if (command != NULL && strcmp(command, "div") == 0)
 	{
 		divi(count);
 	}
-	if (command != NULL && strcmp(command, "mul") == 0)
+	else if (command != NULL && strcmp(command, "mul") == 0)
         {
                 mul(count);
         }
-	if (command != NULL && strcmp(command, "mod") == 0)
+	else if (command != NULL && strcmp(command, "mod") == 0)
         {
                 mod(count);
         }
-	if (command != NULL && strcmp(command, "pchar") == 0)
+	else if (command != NULL && strcmp(command, "pchar") == 0)
 	{
 		pchar(count);
 	}
-	if (command != NULL && strcmp(command, "pstr") == 0)
+	else if (command != NULL && strcmp(command, "pstr") == 0)
         {
                 pstr();
         }
+	else
+	{
+		if (command != NULL)
+		{
+			printf("L%u: unknown instruction %s", count, command);
+			exit (EXIT_FAILURE);
+		}
+	}
+	
 	
 
 }
