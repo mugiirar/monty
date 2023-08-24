@@ -12,6 +12,7 @@ void swap(unsigned int count);
 void add(unsigned int count);
 void nop();
 void sub(unsigned int count);
+void divi(unsigned int count);
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -104,6 +105,10 @@ void process(unsigned int count, char *line)
 	if (command != NULL && strcmp(command, "sub") == 0)
 	{
 		sub(count);
+	}
+	if (command != NULL && strcmp(command, "div") == 0)
+	{
+		divi(count);
 	}
 
 }
@@ -198,4 +203,30 @@ void sub(unsigned int count)
 	top = top - 1;
 
 	stack_arr[top] = second - first;
+}
+
+void divi(unsigned int count)
+{
+	int first, second, r;
+
+        r = top;
+        if (top < 1)
+        {
+                printf("L%u: can't sub, stack too short\n", count);
+                exit(EXIT_FAILURE);
+        }
+
+        first = stack_arr[r];
+        second = stack_arr[r - 1];
+
+	if (stack_arr[top] == 0)
+	{
+		printf("L%u: division by zero", count);
+		exit(EXIT_FAILURE);
+	}
+
+        top = top - 1;
+
+
+        stack_arr[top] = second/first;
 }
