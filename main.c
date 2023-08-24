@@ -10,6 +10,7 @@ void pint(unsigned int count);
 void pop(unsigned int count);
 void swap(unsigned int count);
 void add(unsigned int count);
+void nop();
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -95,6 +96,10 @@ void process(unsigned int count, char *line)
 	{
 		add(count);
 	}
+	if (command != NULL && strcmp(command, "nop"0 == 0))
+	{
+		nop();
+	}
 
 }
 
@@ -165,4 +170,8 @@ void add(unsigned int count)
 	top = top - 1;
 
 	stack_arr[top] = first + second;
+}
+
+void nop()
+{
 }
