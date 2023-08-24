@@ -9,6 +9,7 @@ void push(int data);
 void pint(unsigned int count);
 void pop(unsigned int count);
 void swap(unsigned int count);
+void add(unsigned int count);
 int main(int argc, char *argv[])
 {
         char *line = NULL;
@@ -90,6 +91,10 @@ void process(unsigned int count, char *line)
 	{
 		swap(count);
 	}
+	if (command != NULL && strcmp(command, "add") == 0)
+	{
+		add(count);
+	}
 
 }
 
@@ -132,7 +137,7 @@ void swap(unsigned int count)
 	r = top;
 	if (top < 1)
 	{
-		printf("L%u: can't swap, stack too short", count);
+		printf("L%u: can't swap, stack too short\n", count);
 		exit(EXIT_FAILURE);
 	}
 
@@ -143,3 +148,21 @@ void swap(unsigned int count)
 	stack_arr[top-1] = first;
 }
 
+void add(unsigned int count)
+{
+	int first, second, r;
+
+	r = top;
+	if (top < 1)
+	{
+		printf("L%u: can't add, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+
+	first = stack_arr[r];
+	second = stack_arr[r - 1];
+
+	top = top - 1;
+
+	stack_arr[top] = first + second;
+}
